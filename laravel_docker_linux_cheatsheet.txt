@@ -1,0 +1,114 @@
+Milan cheat cmd for Laravel,Docker,Linux
+
+---
+
+## 📘 Laravel, Docker & Linux Cheat Sheet
+
+### 🚀 Laravel Commands
+
+#### ⚙️ Artisan CLI
+```bash
+php artisan serve
+php artisan migrate
+php artisan make:controller ControllerName
+php artisan make:model ModelName
+php artisan route:list
+php artisan db:seed
+```
+
+#### 🧱 Eloquent ORM
+```php
+Model::all()
+Model::find($id)
+Model::where('column', 'value')->get()
+Model::create(['column' => 'value'])
+Model::update(['column' => 'new_value'])
+Model::destroy($id)
+```
+
+#### 🧭 Routing
+```php
+Route::get('/path', function () {
+    return 'Hello World';
+});
+
+Route::post('/submit', [Controller::class, 'method']);
+Route::put('/update/{id}', [Controller::class, 'update']);
+Route::delete('/delete/{id}', [Controller::class, 'destroy']);
+```
+
+---
+
+### 🐳 Docker Commands
+
+#### 🔧 Basic Operations
+```bash
+docker compose up
+docker compose down
+```
+
+#### 🛠️ Service Management
+```bash
+docker compose start
+docker compose stop
+docker compose restart
+```
+
+#### 🐞 Debugging
+```bash
+docker compose logs
+docker compose ps
+docker compose exec service_name bash
+```
+
+---
+
+### 🐧 Linux Commands
+
+#### 📂 File Management
+```bash
+ls
+cd directory_name
+cp source destination
+mv source destination
+rm filename
+mkdir directory_name
+```
+
+#### 🧠 Process Management
+```bash
+ps aux
+top
+kill PID
+htop
+```
+
+#### 🌐 Networking
+```bash
+netstat -tuln
+ping domain_or_ip
+curl http://example.com
+ifconfig
+ip a
+```
+
+
+netstat -aon | findstr :8000
+
+netstat -aon | findstr :3306
+
+C:\WINDOWS\system32>netstat -aon | findstr :8000
+  TCP    0.0.0.0:8000           0.0.0.0:0              LISTENING       4324
+  TCP    [::]:8000              [::]:0                 LISTENING       4324
+  
+C:\WINDOWS\system32>taskkill /F /PID 4324
+SUCCESS: The process with PID 4324 has been terminated.
+
+
+/*
+In short:
+It resets your database (drops all tables), rebuilds it using migrations, 
+and then fills it with test data using seeders—all in one step.
+
+php artisan migrate:refresh --seed
+*/

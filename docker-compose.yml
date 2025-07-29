@@ -1,0 +1,38 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile   # Use 'Dockerfile' unless you have a custom name
+    container_name: laravel_ecom2_web
+    ports:
+      - "82:80"
+    volumes:
+      - .:/var/www/html/
+    environment:
+      - APACHE_RUN_USER=www-data
+      - APACHE_RUN_GROUP=www-data
+
+  mysql:
+    image: mariadb:10.8.3
+    container_name: laravel_ecom2_mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-laravel_ecom2}
+      MYSQL_USER: ${MYSQL_USER:-root}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
+    ports:
+      - "3308:3306"
+    volumes:
+      - ecom2_db_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    container_name: laravel_ecom2_adminer
+    restart: unless-stopped
+    ports:
+      - "8083:8080"
+
+volumes:
+  ecom2_db_data:
