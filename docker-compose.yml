@@ -23,7 +23,7 @@ services:
       MYSQL_USER: ${MYSQL_USER:-root}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-root}
     ports:
-      - "3308:3306"
+      - "3306:3306" # Expose MySQL on port 3306 or might be confilcting with another service
     volumes:
       - ecom2_db_data:/var/lib/mysql
 
